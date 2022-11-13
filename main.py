@@ -1,3 +1,16 @@
+#obj: a test dash to run in gcp
+#ref: https://datasciencecampus.github.io/deploy-dash-with-gcp/
+
+#check Python verion
+import sys
+import dash
+print('here here')
+print(sys.version)
+print(dash.__version__)
+
+
+#get lib
+import os
 import dash
 from dash import dcc, html
 import plotly.express as px
@@ -12,23 +25,17 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 # Expose Flask instance
 server = app.server
 
-# Alternative version, using flask server directly (add import flask in imports)
-# server = flask.Flask(__name__)
-# app = dash.Dash(__name__, external_stylesheets=external_stylesheets, server=server)
+#read data
+csv_files_path = os.path.join('data/1.csv')
+df = pd.read_csv(csv_files_path)
 
-# Assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
-
+#setup the figure
 fig = px.bar(
     df, 
     x="Fruit", y="Amount", color="City", barmode="group"
 )
 
+#layout
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),
 
@@ -41,6 +48,6 @@ app.layout = html.Div(children=[
     )
 ])
 
-# Only for running on development mode
+# -------------------------- MAIN ---------------------------- #
 if __name__ == '__main__':
-    app.run_server(debug=True, host='0.0.0.0', port=4089)
+    app.run_server(host='0.0.0.0', port=8080, debug=True, use_reloader=False)
