@@ -38,7 +38,7 @@ fig = px.bar(
 
 #layout
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+    html.H1(children='Hello Dash Ya Gao'),
 
     html.Div(children='''
         Dash: A web application framework for Python. Customized right here!
