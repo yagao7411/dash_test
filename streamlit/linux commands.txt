@@ -1,0 +1,4 @@
+#build the job
+gcloud builds submit --region=australia-southeast1 --tag gcr.io/gcp-wow-finance-faa-dev/genai-yg-app
+#deploy the job
+gcloud run deploy genai-yg --region australia-southeast1 --image gcr.io/gcp-wow-finance-faa-dev/genai-yg-app --platform managed --allow-unauthenticated
