@@ -43,3 +43,4 @@ Steps:
  2.3) upload Dockerfile and requirements.txt under "app" folder
  2.4) run linux commands in "linux commands.txt"
  2.5) "https://genai-yg-vecrmjfrba-ts.a.run.app/" is the link of the app, this url will show in linux outputs as well.
+
